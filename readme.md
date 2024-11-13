@@ -14,9 +14,9 @@ git clone https://github.com/dancless/SQAtask.git
 ```
 
 ## Usage
-Click run icon from classes and tests.
-Run TestNG configuration.
-Maven commands:
+1. Click run icon from Classes and Tests.
+2. Run a TestNG configuration.
+3. Maven commands:
 ```
 mvn test
 mvn test -Dtest="RestAPI.TypiCodeTests"
