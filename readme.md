@@ -19,8 +19,8 @@ git clone https://github.com/dancless/SQAtask.git
 3. Maven commands (Depending on configuration,some commands may need for quotes to be removed before run):
 ```
 mvn test
-mvn test -Dtest="testAPI.TypiCodeTests"
-mvn test -Dtest="testAPI.TypiCodeNegativeTests"
+mvn test -Dtest="testsAPI.TypiCodeTests"
+mvn test -Dtest="testsAPI.TypiCodeNegativeTests"
 mvn clean test -DsuiteXmlFile=testng
 ```
 
