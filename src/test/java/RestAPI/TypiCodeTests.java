@@ -1,4 +1,4 @@
-package RestAPI;
+package restAPI;
 
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
@@ -26,6 +26,8 @@ public class TypiCodeTests {
     void addPost() {
         // Set base Path
         requestSpecification.basePath("/posts");
+        // Set logger
+        requestSpecification.log().all();
         // Request Payload
         requestSpecification.body(" {\n" +
                 "        \"title\": \"Max Malapata\",\n" +
@@ -33,12 +35,11 @@ public class TypiCodeTests {
                 "        \"userId\": 10\n" +
                 "}");
 
-        // get response/print
+        // get response
         Response response = requestSpecification.when().post();
-        System.out.println(response.getBody().asString());
-        // validation method 1
+        // validation RestAssured
         response.then().statusCode(201);
-        // validation method 2
+        // Assert TestNG
         Assert.assertEquals(response.getStatusCode(), 201);
     }
 
@@ -64,77 +65,70 @@ public class TypiCodeTests {
     @Test(priority = 2)
     void getAllPosts() {
         requestSpecification.basePath("/posts");
+        requestSpecification.log().all();
         Response response = requestSpecification.when().get();
-        System.out.println(response.getBody().asString());
         response.then().statusCode(200);
-        Assert.assertEquals(response.getStatusCode(), 200);
     }
 
     @Test(priority = 3)
     void getPostsById() {
         requestSpecification.basePath("/posts/{id}");
         requestSpecification.pathParam("id", 100);
+        requestSpecification.log().all();
         Response response = requestSpecification.when().get();
-        System.out.println(response.getBody().asString());
         response.then().statusCode(200);
-        Assert.assertEquals(response.getStatusCode(), 200);
     }
 
     @Test(priority = 3)
     void getPostCommentsByID() {
         requestSpecification.basePath("/posts/{id}/comments");
         requestSpecification.pathParam("id", 1);
+        requestSpecification.log().all();
         Response response = requestSpecification.when().get();
-        System.out.println(response.getBody().asString());
         response.then().statusCode(200);
-        Assert.assertEquals(response.getStatusCode(), 200);
     }
 
     @Test(priority = 3)
     void getPostPhotosByID() {
         requestSpecification.basePath("/posts/{id}/photos");
         requestSpecification.pathParam("id", 1);
+        requestSpecification.log().all();
         Response response = requestSpecification.when().get();
-        System.out.println(response.getBody().asString());
         response.then().statusCode(200);
-        Assert.assertEquals(response.getStatusCode(), 200);
-        //maybe assert url attribute as well
     }
 
     @Test(priority = 3)
     void getPostAlbumsByID() {
         requestSpecification.basePath("/posts/{id}/albums");
         requestSpecification.pathParam("id", 1);
+        requestSpecification.log().all();
         Response response = requestSpecification.when().get();
-        System.out.println(response.getBody().asString());
         response.then().statusCode(200);
-        Assert.assertEquals(response.getStatusCode(), 200);
     }
 
     @Test(priority = 3)
     void getPostEntryByID() {
         requestSpecification.basePath("/posts/{id}/posts");
         requestSpecification.pathParam("id", 1);
+        requestSpecification.log().all();
         Response response = requestSpecification.when().get();
-        System.out.println(response.getBody().asString());
         response.then().statusCode(200);
-        Assert.assertEquals(response.getStatusCode(), 200);
     }
 
     @Test(priority = 3)
     void getPostCommentsByPostID() {
         requestSpecification.basePath("/comments?postId={id}");
         requestSpecification.pathParam("id", 1);
+        requestSpecification.log().all();
         Response response = requestSpecification.when().get();
-        System.out.println(response.getBody().asString());
         response.then().statusCode(200);
-        Assert.assertEquals(response.getStatusCode(), 200);
     }
 
     @Test(priority = 4)
     void updatePost() {
         requestSpecification.basePath("/posts/{id}");
         requestSpecification.pathParam("id", 1);
+        requestSpecification.log().all();
         requestSpecification.body(" {\n" +
                 "        \"id\": 1,\n" +
                 "        \"title\": \"Updated Title\",\n" +
@@ -143,32 +137,29 @@ public class TypiCodeTests {
                 "}");
 
         Response response = requestSpecification.when().put();
-        System.out.println(response.getBody().asString());
         response.then().statusCode(200);
-        Assert.assertEquals(response.getStatusCode(), 200);
     }
 
     @Test(priority = 4)
     void patchPost() {
         requestSpecification.basePath("/posts/{id}");
         requestSpecification.pathParam("id", 1);
+        requestSpecification.log().all();
         requestSpecification.body(" {\n" +
                 "        \"title\": \"Patched Title\"\n" +
                 "}");
 
         Response response = requestSpecification.when().patch();
-        System.out.println(response.getBody().asString());
         response.then().statusCode(200);
-        Assert.assertEquals(response.getStatusCode(), 200);
     }
 
     @Test(priority = 5)
     void deletePost() {
         requestSpecification.basePath("/posts/{id}");
         requestSpecification.pathParam("id", 101);
+        requestSpecification.log().all();
         Response response = requestSpecification.when().delete();
         response.then().statusCode(200);
-        Assert.assertEquals(response.getStatusCode(), 200);
     }
 
 }

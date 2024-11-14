@@ -16,11 +16,11 @@ git clone https://github.com/dancless/SQAtask.git
 ## Usage
 1. Click run icon from Classes and Tests.
 2. Run a TestNG configuration.
-3. Maven commands:
+3. Maven commands (Depending on configuration,some commands may need for quotes to be removed before run):
 ```
 mvn test
-mvn test -Dtest="RestAPI.TypiCodeTests"
-mvn test -Dtest="RestAPI.TypiCodeNegativeTests"
+mvn test -Dtest="restAPI.TypiCodeTests"
+mvn test -Dtest="restAPI.TypiCodeNegativeTests"
 mvn clean test -DsuiteXmlFile=testng
 ```
 
